@@ -13,4 +13,7 @@ This app is used in conjunction with a demo app based on the NfcTools for Java p
 where a connection from an ACR122U desktop NFC reader is made. The reader will connect to this 
 app and exchange arbitrary messages with the Android device.
 
+Have a look at the blog post how this all works together:
+http://blog.opendatalab.de/hack/2013/11/07/android-host-card-emulation-with-acr122/
+
 For the time being you need a Nexus 5 device for this to work.
