@@ -9,6 +9,8 @@ http://developer.android.com/guide/topics/connectivity/nfc/hce.html
 The HostApduService will simply wait for a SELECT AID apdu and then start a simple 
 message exchange. Every message gets a unique message number.
 
+You can find a precompiled APK in the releases section of this repository.
+
 This app is used in conjunction with a demo app based on the NfcTools for Java project 
 where a connection from an ACR122U desktop NFC reader is made. The reader will connect to this 
 app and exchange arbitrary messages with the Android device.
