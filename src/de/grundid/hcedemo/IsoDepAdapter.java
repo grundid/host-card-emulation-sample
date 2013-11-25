@@ -12,16 +12,11 @@ import android.widget.TextView;
 public class IsoDepAdapter extends BaseAdapter {
 
 	private LayoutInflater layoutInflater;
-	private List<String> messages;
+	private List<String> messages = new ArrayList<String>(100);
 	private int messageCounter;
 
 	public IsoDepAdapter(LayoutInflater layoutInflater) {
 		this.layoutInflater = layoutInflater;
-	}
-
-	public void resetMessages() {
-		messages = new ArrayList<String>(100);
-		notifyDataSetInvalidated();
 	}
 
 	public void addMessage(String message) {
