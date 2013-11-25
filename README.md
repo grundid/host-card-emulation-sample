@@ -18,4 +18,7 @@ app and exchange arbitrary messages with the Android device.
 Have a look at the blog post how this all works together:
 http://blog.opendatalab.de/hack/2013/11/07/android-host-card-emulation-with-acr122/
 
-For the time being you need a Nexus 5 device for this to work.
+I've also updated this app to demonstrate the Reader-Mode in Android 4.4 which allows you to communicate
+to a second Android device in host-based card emulation mode.
+
+For the time being you need an Android 4.4 device for this to work.

@@ -7,7 +7,7 @@ import android.nfc.Tag;
 import android.nfc.tech.IsoDep;
 import android.os.Bundle;
 import android.widget.ListView;
-import de.grundid.hcedemo.IsoDepTranceiver.OnMessageReceived;
+import de.grundid.hcedemo.IsoDepTransceiver.OnMessageReceived;
 
 public class MainActivity extends Activity implements OnMessageReceived, ReaderCallback {
 
@@ -41,8 +41,8 @@ public class MainActivity extends Activity implements OnMessageReceived, ReaderC
 	@Override
 	public void onTagDiscovered(Tag tag) {
 		IsoDep isoDep = IsoDep.get(tag);
-		IsoDepTranceiver tranceiver = new IsoDepTranceiver(isoDep, this);
-		Thread thread = new Thread(tranceiver);
+		IsoDepTransceiver transceiver = new IsoDepTransceiver(isoDep, this);
+		Thread thread = new Thread(transceiver);
 		thread.start();
 	}
 

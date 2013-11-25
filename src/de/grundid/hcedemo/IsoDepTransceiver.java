@@ -5,10 +5,8 @@ import java.io.IOException;
 import android.nfc.tech.IsoDep;
 import android.util.Log;
 
-public class IsoDepTranceiver implements Runnable {
+public class IsoDepTransceiver implements Runnable {
 
-	private static final byte[] CLA_INS_P1_P2 = { 0x00, (byte)0xA4, 0x04, 0x00 };
-	private static final byte[] AID_ANDROID = { (byte)0xF0, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06 };
 
 	public interface OnMessageReceived {
 
@@ -20,11 +18,14 @@ public class IsoDepTranceiver implements Runnable {
 	private IsoDep isoDep;
 	private OnMessageReceived onMessageReceived;
 
-	public IsoDepTranceiver(IsoDep isoDep, OnMessageReceived onMessageReceived) {
+	public IsoDepTransceiver(IsoDep isoDep, OnMessageReceived onMessageReceived) {
 		this.isoDep = isoDep;
 		this.onMessageReceived = onMessageReceived;
 	}
 
+	private static final byte[] CLA_INS_P1_P2 = { 0x00, (byte)0xA4, 0x04, 0x00 };
+	private static final byte[] AID_ANDROID = { (byte)0xF0, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06 };
+	
 	private byte[] createSelectAidApdu(byte[] aid) {
 		byte[] result = new byte[6 + aid.length];
 		System.arraycopy(CLA_INS_P1_P2, 0, result, 0, CLA_INS_P1_P2.length);
@@ -40,11 +41,9 @@ public class IsoDepTranceiver implements Runnable {
 		try {
 			isoDep.connect();
 			byte[] response = isoDep.transceive(createSelectAidApdu(AID_ANDROID));
-			Log.i("HCE", "Received: " + new String(response) + " Length " + response.length);
 			while (isoDep.isConnected() && !Thread.interrupted()) {
 				String message = "Message from IsoDep " + messageCounter++;
 				response = isoDep.transceive(message.getBytes());
-				Log.i("HCE", "Received: " + new String(response) + " Length " + response.length);
 				onMessageReceived.onMessage(response);
 			}
 			isoDep.close();
